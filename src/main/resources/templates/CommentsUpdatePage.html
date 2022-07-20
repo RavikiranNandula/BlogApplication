@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet" >
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <style>
+        *{
+            margin: 0px;
+        }
+
+        .bg-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color : gainsboro;
+            height: 100vh;
+        }
+        .heading-container{
+            background-color: gainsboro;
+            padding: 20px;
+        }
+        .container{
+            background-color: white;
+            width: 500px;
+            padding: 2px;
+        }
+        .main-heading{
+            font-family: "Roboto";
+            font-size: 30px;
+            font-weight: 600;
+        }
+        .main-description{
+            font-family: "Roboto";
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .inputs{
+            display: block;
+            margin-top: 10px;
+            width: 400px;
+            margin-bottom: 20px;
+            height: 25px;
+        }
+        #password{
+            display: block;
+            margin-top: 10px;
+            width: 400px;
+            height: 25px;
+         }
+        #password2{
+            display: block;
+            margin-top: 10px;
+            width: 400px;
+            height: 25px;
+         }
+        #email{
+            display: block;
+            margin-top: 10px;
+            width: 400px;
+            height: 25px;
+        }
+        .form-container{
+            padding: 30px;
+            font-size: 18px;
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+        }
+        .example{
+            font-size: 15px;
+            margin-top: 0px;
+            margin-bottom: 20px;
+        }
+        .span{
+            color: red;
+        }
+        .submit-btn{
+            align-self: center;
+            height: 35px;
+            width: 100px;
+            border-width: 0px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="bg-container">
+    <div class="container">
+        <div class="heading-container">
+            <h1 class="main-heading">Update Comment</h1>
+        </div>
+        <div class="form-container">
+            <form th:action="@{/updateComment/{id}(id=${comment.id})}" class="form" method="post">
+                <div class="inputs-container">
+                    <label for="name">Full name <span class="span">*</span></label>
+                    <input id="name" type="text"  class="inputs" placeholder="Please enter your Name" name="name" th:field="*{comment.name}">
+                </div>
+                <div class="inputs-container">
+                    <label for="email">E-mail <span class="span">*</span></label>
+                    <input id="email" type="text"  placeholder="Please enter your E-mail" name="email" th:field="*{comment.email}">
+                    <p class="example">example@example.com</p>
+                </div>
+                <div class="inputs-container">
+                    <label for="name">Comment <span class="span">*</span></label>
+                    <textarea rows="5" cols="30" style="display: block; width: 400px; margin-top: 10px;" name="message" th:field="*{comment.text}">
+                        </textarea>
+                </div>
+                <input type="submit" class="submit-btn">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

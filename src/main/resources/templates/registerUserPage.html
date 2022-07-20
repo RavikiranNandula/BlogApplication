@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <link rel="stylesheet">
+  <meta charset="UTF-8">
+  <style>
+      *{
+          margin: 0px;
+      }
+
+      .bg-container{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color : gainsboro;
+          height: 100vh;
+      }
+      .heading-container{
+          background-color: gainsboro;
+          padding: 20px;
+      }
+      .container{
+          background-color: white;
+          width: 500px;
+          padding: 2px;
+      }
+      .main-heading{
+          font-family: "Roboto";
+          font-size: 30px;
+          font-weight: 600;
+      }
+      .main-description{
+          font-family: "Roboto";
+          font-size: 15px;
+          font-weight: 500;
+      }
+
+      .inputs{
+          display: block;
+          margin-top: 10px;
+          width: 400px;
+          margin-bottom: 20px;
+          height: 25px;
+      }
+      #password{
+      display: block;
+          margin-top: 10px;
+          width: 400px;
+          height: 25px;
+       }
+      #password2{
+      display: block;
+          margin-top: 10px;
+          width: 400px;
+          height: 25px;
+       }
+      #email{
+          display: block;
+          margin-top: 10px;
+          width: 400px;
+          height: 25px;
+      }
+      .form-container{
+          padding: 30px;
+          font-size: 18px;
+      }
+      .form{
+          display: flex;
+          flex-direction: column;
+      }
+      .example{
+          font-size: 15px;
+          margin-top: 0px;
+          margin-bottom: 20px;
+      }
+      .span{
+          color: red;
+      }
+      .submit-btn{
+          align-self: center;
+          height: 35px;
+          width: 100px;
+          border-width: 0px;
+          border-radius: 4px;
+          margin-top: 20px;
+      }
+  </style>
+  <title>Admin</title>
+</head>
+<body>
+<div class="bg-container">
+  <div class="container">
+    <div class="heading-container">
+      <h1 class="main-heading">User Registration</h1>
+    </div>
+    <div class="form-container">
+      <div th:if="${errorMessage!=''}">
+        <p th:text="${errorMessage}" style="color:red; margin-bottom:10px;"></p>
+      </div>
+      <form  class="form" method="post" th:action="@{/saveAndRegisterUser}">
+        <div class="inputs-container">
+          <label for="name">User name <span class="span">*</span></label>
+          <input id="name" type="text"  class="inputs" placeholder="Please enter your Name" name="name" th:text="${name}">
+        </div>
+        <div class="inputs-container">
+          <label for="email">E-mail <span class="span">*</span></label>
+          <input id="email" type="text"  placeholder="Please enter your E-mail" name="email" th:text="${email}">
+          <p class="example">example@example.com</p>
+        </div>
+        <div class="inputs-container">
+          <label for="password">Password <span class="span">*</span></label>
+          <input type="password" placeholder="Please enter user password" name="password" id="password">
+        </div>
+        <div class="inputs-container">
+          <label for="password">Re Enter Password <span class="span">*</span></label>
+          <input type="password" placeholder="Please re enter your password" name="reEnterPassword" id="password2">
+        </div>
+        <input type="submit" class="submit-btn" value="Register">
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

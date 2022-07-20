@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"/>
+    <style>
+        #main-heading{
+            font-size: 45px;
+            text-align: center;
+            font-weight: 600;
+            margin : 10px;
+            padding : 20px;
+            font-family: "Roboto";
+        }
+        #title{
+            width : 90%;
+            padding : 20px;
+            margin : 10px;
+            margin-bottom:20px;
+            height: 5px;
+            border : solid 2px black;
+            border-radius : 5px;
+        }
+        #tags{
+            width : 90%;
+            padding : 20px;
+            margin-bottom:20px;
+            margin : 10px;
+            height: 5px;
+            border : solid 2px black;
+            border-radius : 5px;
+        }
+        #content{
+            width : 90%;
+            padding : 20px;
+            height : 40vh;
+            margin : 10px;
+            border : solid 2px black;
+            margin-bottom : 20px;
+            border-radius : 5px;
+        }
+        .button{
+            color : black;
+            text-decoration : none;
+            margin-right : 30px;
+            border-radius : 4px;
+            padding : 10px;
+            border : 1px solid black;
+            font-size : 19px;
+        }
+        #container{
+            text-align: center;
+            display:flex;
+            flex-direction: column;
+        }
+        .form-container{
+            display:flex;
+            text-align:center;
+            align-self:center;
+        }
+    </style>
+    <title>New/Edit Post</title>
+</head>
+<body>
+<h1 id="main-heading" th:text="*{heading}"></h1>
+<div id="container">
+    <div>
+            <form action="#" th:action="@{/savePost}" method="post">
+                <input type="text" placeholder="Title" name="title" id="title" th:field="*{post.title}"/></br>
+                <input type="text" placeholder="Tags" name="name" id="tags" th:value="*{tagsData}" required/></br>
+                <textarea placeholder="Content" name="content" id="content" th:field="*{post.content}"></textarea></br>
+                <span th:if="${buttonName=='Save'}">
+                    <input type="submit" class="button" th:value="*{buttonName}">
+                </span>
+                <span th:if="${buttonName=='Update'}">
+                    <button type="submit" formaction="updatePost" class="button">Update</button>
+                    <input type="hidden" th:value="*{id}" name="id">
+                </span>
+                <button type="submit" formaction="publishPost" class="button" formmethod="post">Publish</button>
+            </form>
+    </div>
+</div>
+</body>
+</html>

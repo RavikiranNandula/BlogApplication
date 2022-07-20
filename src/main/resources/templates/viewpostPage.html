@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <link rel="stylesheet" type="text/css"/>
+    <style>
+        .main-container{
+            display: flex;
+            padding:20px;
+            flex-direction: column;
+            text-align:center;
+        }
+        .main-heading{
+            display: inline;
+            font-family: "Poppins";
+            font-size: 20px;
+            font-weight: 500;
+            text-align:left;
+        }
+        .login-class{
+            margin-top: 10px;
+            text-decoration: none;
+            align-self: flex-end;
+        }
+        .login{
+        align-self:flex-end;
+        }
+        .login-cont{
+            display: flex;
+        }
+        .post-title{
+            font-family: "Roboto";
+            font-size: 50px;
+            font-weight: 600;
+        }
+        .post-author{
+            font-family: "Roboto";
+            font-size: 17px;
+        }
+        .data-container{
+            text-align: center;
+        }
+        .post-content{
+            font-family: "Roboto";
+            font-size: 25px;
+        }
+        .button{
+        height:30px;
+        width:80px;
+        text-align:center;
+        margin:10px;
+        margin-left:10px;
+        margin-right:10px;
+        }
+        .posts-box-inner{
+            padding: 10px;
+        }
+        .posts-container{
+            display: flex;
+            justify-content:center;
+            margin-top: 30px;
+            max-width: 100%;
+            flex-wrap: wrap;
+        }
+        .post-heading{
+            font-family: "Roboto";
+            font-size: 30px;
+            font-weight: 500;
+        }
+        .author{
+            font-family: "Roboto";
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .inner-container{
+        display:flex;
+        }
+        .post-anchor{
+        text-decoration:none;
+        color:black;
+        }
+        .posts-box{
+             border: 1px solid black;
+             width: 30%;
+             padding:10px;
+             margin: 10px;
+             height: auto;
+         }
+         .comments-container{
+             display: flex;
+             width:100%;
+             flex-wrap: wrap;
+         }
+         .button1{
+             height:30px;
+             text-decoration : none;
+             margin-right : 10px;
+             background-color : white;
+             border-radius : 5px;
+             padding : 10px;
+             border : 1px solid black;
+             font-size : 15px;
+         }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <h1 class="main-heading">My Blog Application</h1>
+    <div class="login">
+        <span th:if="${isLoggedIn==true}">
+         <a th:href="@{/logout}" class="button1">Logout</a>
+     </span>
+        <span th:if="${isLoggedIn==false}">
+        <a th:href="@{/loginPage}" class="button1">Login</a>
+    </span>
+    </div>
+    <div class="data-container">
+        <h1 class="post-title" th:text="${postData.title}"></h1>
+        <div>
+            <span th:text="${postData.author}" class="post-author">,</span>
+            <span>,</span>
+            <span th:text="${#dates.format(postData.createdAt, 'dd-MMM-yyyy')}" class="post-author">></span>
+        </div>
+        <p class="post-content" th:text="${postData.content}"></p>
+    </div>
+    <div>
+        <div th:if="${isUserPost==true}">
+            <a align="center" th:href="@{/editpost/{id}(id=${postData.id})}">
+                <button class="button">Edit</button>
+            </a>
+            <a align="center" th:href="@{/delete/post/{id}(id=${postData.id})}">
+                <button class="button" style="width:100px;">Delete Post</button>
+            </a>
+        </div>
+        <a href="#formContainer">
+            <button class="button">Comment</button>
+        </a>
+
+    </div>
+    <hr>
+    <h1>Comments</h1>
+    <div class="comments-container">
+        <div class="posts-box" th:each="comment: ${commentsList}">
+            <form th:action="@{/editComment/{id}(id=${comment.id})}" method="post">
+                <div class="posts-box-inner">
+                    <div>
+                        <i>Commented on</i>
+                        <span th:text="${#dates.format(comment.createdAt, 'dd-MMM-yyyy')}"></span>
+                        <i>by</i>
+                        <span th:text="${comment.name}"></span>
+                        </span>
+                    </div>
+                    <p class="author" th:text="${comment.text}"></p>
+                    <div th:if="${isUserPost==true}">
+                        <input type="submit" value="Edit">
+                    </div>
+                </div>
+            </form>
+            <div th:if="${isUserPost==true}">
+            <form th:action="@{/deleteComment/{id}(id=${comment.id})}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div align="center" id="formContainer">
+        <h3>Leave a Comment</h3>
+        <form th:action="@{{id}/addComment(id=${postData.id})}" method="post">
+            Name   :<br><input type="text" style="width:20vw;margin-bottom:10px;" name="name" required/><br>
+            Email  :<br><input type="text" style="width:20vw;margin-bottom:10px;"  name="email" required/><br>
+            Comment :<br><textarea rows="7" style="width:20vw;margin-bottom:10px;" name="comment" required></textarea>
+            <br/><button type="submit" class="button">Add</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

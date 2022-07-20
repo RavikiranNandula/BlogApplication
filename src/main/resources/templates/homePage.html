@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"/>
+    <!-- CSS only -->
+    <title>Home</title>
+    <style>
+     .main-container{
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        padding:10px;
+    }
+    .anchorHeading{
+        text-decoration:none;
+        color:black;
+        font-weight:bold;
+    }
+    #main-heading{
+        font-family: "Poppins";
+        font-size: 40px;
+        font-weight: 500;
+        align-self: flex-start;
+        margin-top: 30px;
+    }
+    .search-input{
+        height: 35px;
+        padding: 10px;
+        border-radius: 10px;
+        border-width: 1px;
+        margin-right: 25px;
+        margin-bottom: 30px;
+    }
+    .filter-class{
+        display: block;
+        height: 35px;
+        width: 180px;
+    }
+    .sort-class{
+        height: 35px;
+        width: 180px;
+    }
+    .login-class{
+        color: blue;
+        text-decoration: none;
+    }
+    .search-container{
+        align-self: flex-end;
+        display: inline;
+    }
+    .filters-container{
+        align-self: flex-start;
+        max-width: 150px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
+        margin-top: 160px;
+        margin-left:15px;
+    }
+    .heading-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .posts-container{
+        margin-top: 30px;
+    }
+    .posts-box{
+          overflow: auto;
+          height: 230px;
+          width: 45%;
+          border: 2px solid black;
+          margin:10px;
+          padding:0px;
+    }
+    .posts-box-inner{
+        padding: 10px;
+    }
+    .posts-container{
+        display: flex;
+        justify-content:center;
+        margin-top: 30px;
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+    .post-heading{
+        font-family: "Roboto";
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .author{
+        font-family: "Roboto";
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .inner-container{
+    display:flex;
+    }
+    .post-anchor{
+    text-decoration:none;
+    color:black;
+    }
+    .selectOptions{
+        height: auto;
+        width: 100px;
+        padding: 5px;
+        margin-bottom: 8px;
+    }
+    .filter-class{
+        text-align:center;
+    }
+    .filter-cont{
+        align-self: flex-end;
+        display: flex;
+    }
+    .pagination{
+    display:flex;
+    margin:15px;
+    list-style-type:none;
+    }
+    .page-item{
+        padding:15px;
+        margin-left:10px;
+    }
+    .button{
+        color : black;
+        text-decoration : none;
+        margin-right : 10px;
+        background-color : white;
+        border-radius : 5px;
+        padding : 10px;
+        border : 1px solid black;
+        font-size : 20px;
+    }
+    .button1{
+        height:30px;
+        text-decoration : none;
+        margin-right : 10px;
+        background-color : white;
+        border-radius : 5px;
+        padding : 10px;
+        border : 1px solid black;
+        font-size : 15px;
+    }
+    .filters-form{
+        overflow:auto;
+        max-height:350px;
+    }
+    .authors-form{
+        overflow:auto;
+        max-height:100px;
+    }
+    .posts{
+        border:0px;
+        background-color: transparent;
+    }
+    .clearAllButton{
+        color:black;
+        height:30px;
+        width:80px;
+    }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="filters-container">
+        <h1>Filter By Tags</h1>
+        <form th:action="@{'/page/'+${currentPage}+'/filters'}" >
+            <div class="filters-form">
+                <p th:each="tag : ${tagsList}">
+                    <input name="tagId" th:text="${tag.name}" th:value="${tag.id}" type="checkbox"/>
+                </p>
+            </div>
+            <h4>Filter By Authors</h4>
+            <div class="authors-form">
+                <p th:each="authorName : ${authorsList}">
+                    <input name="authors" th:text="${authorName}" th:value="${authorName}" type="checkbox"/>
+                </p>
+            </div>
+            <button type="submit" style="margin-top:20px;">Apply</button>
+        </form>
+    </div>
+    <div>
+        <div class="heading-container">
+            <a th:href="@{/}" style="text-decoration:none;color:black;"><h1 id="main-heading">My Blog Application</h1></a>
+            <form class="search-container" th:action="@{'/page/1'}" method="get">
+                <a th:href="@{/newpost}" class="anchorHeading" style="margin-bottom:10px;margin-right:30px;">Create a New Post</a>
+                <span th:if="${isLoggedIn==true}">
+                    <a th:href="@{/logout}" class="button1">Logout</a>
+                    <p>Logged in as :<span th:text="${userName}" style="font-weight:bold;"></span></p>
+                </span>
+                <span th:if="${isLoggedIn==false}">
+                    <a th:href="@{/loginPage}" class="button1">Login</a>
+                </span>
+                <br><br>
+                <input type="search"  class="search-input" placeholder="search" name="search" th:value="${search}" onchange="this.form.submit()">
+                <select  name="sortType" class="selectOptions" onchange="this.form.submit()">
+                    <option>Sort by Date</option>
+                    <option th:value="asc">Sort By Asc</option>
+                    <option th:value="desc">Sort By Desc</option>
+                </select>
+            </form>
+        </div>
+        <div style="display: flex;">
+            <form th:action="@{'/page/' + ${currentPage}}" style="display: flex; margin-left:25px;">
+                <select  name="postsType" class="selectOptions" onchange="this.form.submit()">
+                    <option selected>Select Posts By</option>
+                    <option th:value="allPosts">All Posts</option>
+                    <option th:value="myPosts">My Posts</option>
+                </select>
+            </form>
+        </div>
+        <div class="posts-container" >
+            <div th:if="${blogsList.isEmpty()==true}">
+                <h1>Sorry no posts found</h1>
+                <h1><a th:href="@{/}" class="anchorHeading"><-- Back to home</a></h1>
+            </div>
+            <div class="posts-box" th:each="blog: ${blogsList}" th:if="${blog.isPublished==true}">
+                <a class="post-anchor" th:href="@{/post/{id}(id=${blog.id})}">
+                    <div class="posts-box-inner">
+                        <h1 class="post-heading" th:text="${blog.title}"></h1>
+                        <div >
+                            <i>Posted on</i>
+                            <span th:text="${#dates.format(blog.publishedAt, 'dd-MMM-yyyy')}"></span>
+                            <i>by</i>
+                            <span th:text="${blog.author}"></span>
+                            </span>
+                        </div>
+                        <p class="author" th:text="${blog.excerpt}"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="posts-box" th:each="blog: ${blogsList}" th:if="${blog.isPublished==false}">
+                <a class="post-anchor" th:href="@{/post/{id}(id=${blog.id})}">
+                    <div class="posts-box-inner">
+                        <h1 class="post-heading" th:text="${blog.title}"></h1>
+                        <div >
+                            <i>Saved on</i>
+                            <span th:text="${#dates.format(blog.createdAt, 'dd-MMM-yyyy')}"></span>
+                            <i>by</i>
+                            <span th:text="${blog.author}"></span>
+                            </span>
+                        </div>
+                        <p class="author" th:text="${blog.excerpt}"></p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <nav>
+            <div th:if="${currentPage!=null}">
+                <ul class="pagination">
+                    <li class="page-item" style="margin-right:50rem">
+                        <a th:if="${currentPage>1}" th:href="@{'/page/' + ${currentPage - 1}+'?sortType='+${sortType}+'&search='+${search}+'&postsType='+${postsType}}" class="button">Previous</a>
+                        <span th:unless="${currentPage>1}">Previous</span>
+                    </li>
+                    <li th:each="i :${#numbers.sequence(1,totalPages)}" class="page-item">
+                        <a th:if="${currentPage != i}" th:href="@{'/page/'+${i}+'?sortType='+${sortType}+'&search='+${search}}" th:text="*{i}"></a>
+                        <span th:unless="${currentPage != i}">[[${i}]]</span>
+                    </li>
+                    <li class="page-item">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+'?sortType='+${sortType}+'&search='+${search}+'&postsType='+${postsType}}" class="button">Next</a>
+                        <span th:unless="${currentPage< totalPages}">Next</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+}
+
+.bg-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color : gainsboro;
+    height: 100vh;
+}
+.heading-container{
+    background-color: gainsboro;
+    padding: 20px;
+}
+.container{
+    background-color: white;
+    width: 500px;
+    padding: 2px;
+}
+.main-heading{
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: 600;
+}
+.main-description{
+    font-family: "Roboto";
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.inputs{
+    display: block;
+    margin-top: 10px;
+    width: 400px;
+    margin-bottom: 20px;
+    height: 25px;
+}
+#password{
+display: block;
+    margin-top: 10px;
+    width: 400px;
+    height: 25px;
+ }
+#password2{
+display: block;
+    margin-top: 10px;
+    width: 400px;
+    height: 25px;
+ }
+#email{
+    display: block;
+    margin-top: 10px;
+    width: 400px;
+    height: 25px;
+}
+.form-container{
+    padding: 30px;
+    font-size: 18px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.example{
+    font-size: 15px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.span{
+    color: red;
+}
+.submit-btn{
+    align-self: center;
+    height: 35px;
+    width: 100px;
+    border-width: 0px;
+    border-radius: 4px;
+    margin-top: 20px;
+}

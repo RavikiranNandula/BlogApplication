@@ -1,0 +1,54 @@
+#main-heading{
+        font-size: 45px;
+        text-align: center;
+        font-weight: 600;
+        margin : 10px;
+        padding : 20px;
+        font-family: "Roboto";
+    }
+    #title{
+        width : 90%;
+        padding : 20px;
+        margin : 10px;
+        margin-bottom:20px;
+        height: 5px;
+        border : solid 2px black;
+        border-radius : 5px;
+    }
+    #tags{
+        width : 90%;
+        padding : 20px;
+        margin-bottom:20px;
+        margin : 10px;
+        height: 5px;
+        border : solid 2px black;
+        border-radius : 5px;
+    }
+    #content{
+        width : 90%;
+        padding : 20px;
+        height : 40vh;
+        margin : 10px;
+        border : solid 2px black;
+        margin-bottom : 20px;
+        border-radius : 5px;
+    }
+    .button{
+        color : black;
+        text-decoration : none;
+        margin-right : 30px;
+        border-radius : 4px;
+        padding : 10px;
+        border : 1px solid black;
+        font-size : 19px;
+    }
+    #container{
+        text-align: center;
+        display:flex;
+        flex-direction: column;
+    }
+    .form-container{
+        display:flex;
+        text-align:center;
+        align-self:center;
+    }

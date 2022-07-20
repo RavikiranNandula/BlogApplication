@@ -1,0 +1,97 @@
+.main-container{
+    display: flex;
+    padding:20px;
+    flex-direction: column;
+    text-align:center;
+}
+.main-heading{
+    display: inline;
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 500;
+    text-align:left;
+}
+.login-class{
+    margin-top: 10px;
+    text-decoration: none;
+    align-self: flex-end;
+}
+.login{
+align-self:flex-end;
+}
+.login-cont{
+    display: flex;
+}
+.post-title{
+    font-family: "Roboto";
+    font-size: 50px;
+    font-weight: 600;
+}
+.post-author{
+    font-family: "Roboto";
+    font-size: 17px;
+}
+.data-container{
+    text-align: center;
+}
+.post-content{
+    font-family: "Roboto";
+    font-size: 25px;
+}
+.button{
+height:30px;
+width:80px;
+text-align:center;
+margin:10px;
+margin-left:10px;
+margin-right:10px;
+}
+.posts-box-inner{
+    padding: 10px;
+}
+.posts-container{
+    display: flex;
+    justify-content:center;
+    margin-top: 30px;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+.post-heading{
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: 500;
+}
+.author{
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 500;
+}
+.inner-container{
+display:flex;
+}
+.post-anchor{
+text-decoration:none;
+color:black;
+}
+.posts-box{
+     border: 1px solid black;
+     width: 30%;
+     padding:10px;
+     margin: 10px;
+     height: auto;
+ }
+ .comments-container{
+     display: flex;
+     width:100%;
+     flex-wrap: wrap;
+ }
+ .button1{
+     height:30px;
+     text-decoration : none;
+     margin-right : 10px;
+     background-color : white;
+     border-radius : 5px;
+     padding : 10px;
+     border : 1px solid black;
+     font-size : 15px;
+ }

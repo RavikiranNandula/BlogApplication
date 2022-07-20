@@ -1,0 +1,70 @@
+*{
+    margin: 0px;
+}
+
+body{
+    background-size: cover;
+    height: 100vh
+}
+.bg-container{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-heading{
+    font-family: "Roboto";
+    color: white;
+    font-weight: 600;
+    font-size: 30px;
+}
+.form-container{
+    background-color: white;
+    margin-top: 20px;
+    padding: 20px;
+    height: auto;
+    width: 340px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.inputs-cont{
+    display: flex;
+}
+.icon{
+    font-size: 20px;
+    margin-top: 30px;
+}
+.input{
+    margin-top: 30px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    color: black;
+    border-color: transparent;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    height: 30px;
+    border: 0px solid;
+    outline: none;
+}
+.btn{
+    background-image: linear-gradient(to left,#a445b2, #d41872, #fa4299);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 18px;
+    border-width: 0px;
+    height: 40px;
+    width: 150px;
+    margin-top: 20px;
+    align-self: center;
+    margin-right:30px;
+}
+.form{
+	display:flex;
+	flex-direction:column;
+}
